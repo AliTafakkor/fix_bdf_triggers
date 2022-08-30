@@ -41,7 +41,10 @@ function correct_triggers(filepath)
     
     % Forming new header
     corrected_hdr = hdr;
-    corrected_hdr.FileName = ['corrected_' hdr.FileName];
+    temp_name = split(hdr.FileName, filesep);
+    temp_name{end} = ['corrected_' temp_name{end}];
+    temp_name = join(temp_name, filesep);
+    corrected_hdr.FileName = temp_name{1};
     corrected_hdr.EVENT.TYP = corrected_event_typ;
     corrected_hdr.EVENT.POS = corrected_event_pos;
     corrected_hdr.EVENT.CHN = zeros(length(index), 1);
